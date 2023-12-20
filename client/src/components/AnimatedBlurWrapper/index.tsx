@@ -29,11 +29,11 @@ export default function AnimatedBlurWrapper({
 }: IProps) {
   // Refs
   const lastUrl = useRef(backgroundUrl);
+  const backgroundRef = useRef<HTMLDivElement>(null);
 
   // States
   const [hasImgLoad, setHasImgLoad] = useState(false);
 
-  const background = useMemo(() => `url(${backgroundUrl})`, [backgroundUrl]);
   const doShow = useMemo(() => hasImgLoad && show, [hasImgLoad, show]);
 
   // Effects
@@ -47,12 +47,15 @@ export default function AnimatedBlurWrapper({
     try {
       setHasImgLoad(false);
 
-      if (!src) return;
+      if (!(src && backgroundRef.current)) return;
 
       const img = document.createElement("img");
 
       img.addEventListener("load", () => {
-        if (lastUrl.current === src) setHasImgLoad(true);
+        if (lastUrl.current === src) {
+          backgroundRef.current!.style.background = `url(${src})`;
+          setHasImgLoad(true);
+        }
       });
 
       img.src = src;
@@ -67,12 +70,12 @@ export default function AnimatedBlurWrapper({
       {children}
 
       <div
+        ref={backgroundRef}
         className={classNames(
           "animated-blur absolute inset-0 z-10 transition-all duration-1000 bg-cover blur-xl pointer-events-none scale-110",
           blurClassName,
           doShow ? showClassName : hideClassName
         )}
-        style={{ background }}
       />
     </div>
   );

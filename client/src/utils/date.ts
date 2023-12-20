@@ -18,13 +18,16 @@ export function timestampToText(timestamp: number) {
     const hoursDiff = today.diff(date, "hours"),
       minutes = Math.trunc(today.diff(date, "minutes"));
 
-    return hoursDiff
-      ? `${Math.trunc(hoursDiff)} ${getGrammaticalNumber(
-          hoursDiff,
-          "hour",
-          "hours"
-        )} ago`
-      : `${minutes} ${getGrammaticalNumber(minutes, "minute", "minutes")} ago`;
+    if (hoursDiff)
+      return `${Math.trunc(hoursDiff)} ${getGrammaticalNumber(
+        hoursDiff,
+        "hour",
+        "hours"
+      )} ago`;
+
+    return minutes
+      ? `${minutes} ${getGrammaticalNumber(minutes, "minute", "minutes")} ago`
+      : "Now";
   } else if (daysDiff === 1) return "Yesterday";
   else if (daysDiff < 7) return `${daysDiff} days ago`;
   else if (daysDiff < 32) {
