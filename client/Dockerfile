@@ -1,0 +1,19 @@
+FROM node:18
+
+ARG INNER_BACKEND_URL
+ARG OUTER_BACKEND_URL
+
+ENV INNER_BACKEND_URL $INNER_BACKEND_URL
+ENV OUTER_BACKEND_URL $OUTER_BACKEND_URL
+
+WORKDIR /client
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+CMD [ "npm", "run", "start" ]

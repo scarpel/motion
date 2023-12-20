@@ -1,0 +1,51 @@
+version: "3.5"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: k616kYMJSa1lNMp8pOSGtqcNU
+    ports:
+      - 27017:27017
+  
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: k616kYMJSa1lNMp8pOSGtqcNU
+      ME_CONFIG_MONGODB_URL: mongodb://root:k616kYMJSa1lNMp8pOSGtqcNU@mongo:27017/
+
+  server:
+    build: 
+      context: ./server
+      dockerfile: dev.Dockerfile
+    container_name: server
+    depends_on:
+      - mongo
+    ports:
+      - 4000:4000
+    environment:
+      MONGO_URL: mongodb://root:k616kYMJSa1lNMp8pOSGtqcNU@mongo:27017/motion?authSource=admin
+    volumes:
+      - ./server/src:/server/src
+
+  client:
+    build:
+      context: ./client
+      dockerfile: dev.Dockerfile
+    container_name: client
+    ports:
+      - 3000:3000
+    depends_on:
+      - server
+    environment:
+      INNER_BACKEND_URL: http://server:4000
+      OUTER_BACKEND_URL: http://localhost:4000
+    volumes:
+      - ./client/src:/client/src
+      - ./client/public/:/client/public

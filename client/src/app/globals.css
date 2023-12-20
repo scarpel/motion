@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+
+  .video-round{
+    @apply rounded-xl
+  }
+
+  .main-container-sizing{
+    @apply absolute w-3/4 h-3/4 rounded-2xl;
+    max-width: 1500px;
+    max-height: 1200px;
+  }
+
+  .tab-controller{
+    @apply absolute;
+
+    bottom: 13%;
+    transform: translateY(50%);
+    z-index: 100;
+  }
+}
+
+@layer components{
+  .input{
+    @apply border border-gray-400 p-3 rounded-lg focus:border-gray-600 transition-all duration-500;
+  }
+
+  .label{
+    @apply font-semibold mb-2 text-sm;
+  }
+
+  .tag{
+    @apply px-4 py-2 rounded-full text-sm lowercase;
+  }
+}
