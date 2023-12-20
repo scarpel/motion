@@ -10,7 +10,11 @@
 ## Preview
 
 <p align="center">
-  <img alt="Motion preview" src="https://github.com/scarpel/motion/blob/main/medias/motion.gif" width="500">
+  
+
+https://github.com/scarpel/motion/assets/31899092/81ec7b9d-eff9-4b72-b4ef-44db04c36c73
+
+
 </p>
 
 ## How to run it
