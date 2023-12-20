@@ -7,6 +7,12 @@
 </p>
 <p align="center">A study on video streaming. Made using NestJS, NextJS, Tailwind CSS, MongoDB and Docker</p>
 
+## Preview
+
+<p align="center">
+  <img alt="Motion preview" src="https://github.com/scarpel/motion/blob/main/medias/motion.gif" width="500">
+</p>
+
 ## How to run it
 
 > [!NOTE]  
