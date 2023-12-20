@@ -12,7 +12,7 @@
 <p align="center">
   
 
-https://github.com/scarpel/motion/assets/31899092/81ec7b9d-eff9-4b72-b4ef-44db04c36c73
+https://github.com/scarpel/motion/assets/31899092/6408ea43-3d5d-47e2-935d-530b269f724e
 
 
 </p>
